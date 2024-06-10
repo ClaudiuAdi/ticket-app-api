@@ -1,4 +1,4 @@
-const { Order } = require('../../models');
+const { Order, Ticket } = require('../../models');
 
 module.exports = async (req, res) => {
   try {
@@ -9,9 +9,8 @@ module.exports = async (req, res) => {
       const start = new Date(year, month, 1);
       const end = new Date(year, month + 1, 0, 23, 59, 59, 999);
 
-      return Order.countDocuments({
+      return Ticket.countDocuments({
         createdAt: { $gte: start, $lte: end },
-        status: 'approved',
       }).then((count) => ({
         month: start.toLocaleString('ro-RO', { month: 'long' }),
         count,

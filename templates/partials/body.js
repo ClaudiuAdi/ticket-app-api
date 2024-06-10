@@ -24,7 +24,7 @@ module.exports = `
                 </td>
               </tr>
 
-              <div style="background: url('https://www.serverofuniverse.ro/images/astro-small.png') no-repeat; background-size: contain;">
+              <div>
                 <table
                 width="100%"
                 border="0"
@@ -32,56 +32,13 @@ module.exports = `
                 cellpadding="0">
                   <tr>
                     <td style="padding: 10px 50px">
-                      <p style="font-size: 18px; color: #374151">
-                        Apreciez intenția ta de a-ți îmbunătăți viața și admir curajul tău de a cere suport în îndeplinirea obiectivelor și scopurilor personale.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td style="padding: 10px 50px">
-                    <p style="font-size: 18px; color: #374151">
-                    Datorită mesajului tău, în acest moment, poți considera că a și început procesul de soluționare a problemei tale. Semnalul tău a fost înregistrat și oportunități minunate vor apărea în calea ta, care te vor ghida și vor determina materializarea dorinței tale.
-                    </p>
-                  </td>
-                               </tr>
-                               <tr>
-                               <td style="padding: 10px 50px">
-                  <p style="font-size: 18px; color: #374151">
-                  Știu că  abia aștepți să te bucuri de rezultat, însă te sfătuiesc să scoți din calcul orice limită de timp. Ori de câte ori îți vine în minte „Când?”  răspunde automat „La momentul potrivit mie, în orice privință!”. Privește cu detașare procesul și ai încredere în îndeplinirea scopului tău.
-                  </p>
-                               </td>
-                               </tr>
-                               <tr>
-                               <td style="padding: 10px 50px">
-                               <p style="font-size: 18px; color: #374151">
-                               Mantra, pe care ți-am pregătit-o, reprezintă chemarea acelui potențial energetic viitor pe care tu îl creezi și îl atragi către tine, de fiecare data când vei rosti aceste cuvinte. Cu cât vei repeta mai mult, cu atât vei micșora distanța dintre tine și scopul tău.
-                               </p>
-                               </td>
-                               </tr>
-                  <tr>
-                    <td style="padding: 10px 50px">
                       <p style="font-size: 18px; color: #4F45E4; font-weight: 600">
                          {{response}}
                       </p>
                     </td>
                   </tr>
-                  <tr>
-                    <td style="padding: 10px 50px">
-                      <p style="font-size: 18px; color: #374151">
-                      Așa este și așa să fie!
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                  <td style="padding: 10px 50px">
-                    <p style="font-size: 18px; color: #374151">
-                    Cu iubire, pace și liniște, abundență și succes, <br /> The Server of the Universe
-                    </p>
-                  </td>
-                               </tr>
                 </table>
               </div>
-
             </tbody>
           </table>
         </td>

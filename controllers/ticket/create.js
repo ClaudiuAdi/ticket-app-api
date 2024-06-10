@@ -37,10 +37,13 @@ module.exports = async (req, res) => {
         {
           role: 'user',
           content:
-            'Îți voi trimite o problemă pe care o întâmpină o persoană. După ce interpretezi textul, vreau ca răspunsul tău să înceapă cu unul din aceste două cuvinte: "grav" sau "redus". Structura raspunsului trebuie sa fie redus/grav : raspunsul tau. Problemele grave sunt cele care ar putea pune in pericol viata vizitatorului cum ar fi: gânduri suicidare, depresie severă, abuz domestic sau violență, criză de anxietate, comportament auto-vătămător, probleme de sănătate mintală acute sau abuz de substanțe. Restul pot sa fie categorizate ca probleme reduse. Acest cuvânt (grav sau redus) trebuie să fie urmat de ":" și de răspunsul tău detaliat.',
+            'Îți voi trimite o problemă pe care o întâmpină o persoană, alaturi de timpul de cand se confrunta cu aceasta problema, daca a primit ajutor in trecuta pentru aceasta problema si mai multe detalii despre problema. După ce interpretezi textul, vreau ca răspunsul tău să înceapă cu unul din aceste două cuvinte: "grav" sau "redus". Structura raspunsului trebuie sa fie redus/grav : raspunsul tau. Problemele grave sunt cele care ar putea pune in pericol viata vizitatorului cum ar fi: gânduri suicidare, depresie severă, abuz domestic sau violență, criză de anxietate, comportament auto-vătămător, probleme de sănătate mintală acute sau abuz de substanțe. Restul pot sa fie categorizate ca probleme reduse. Acest cuvânt (grav sau redus) trebuie să fie urmat de ":" și de răspunsul tău detaliat.',
         },
         { role: 'assistant', content: 'Am înțeles, te rog să îmi trimiți problema.' },
-        { role: 'user', content: `${document.message}` },
+        {
+          role: 'user',
+          content: `Problema mea este ca: ${document.problem}. Intampin aceasta problema de: ${document.time}. In ceea ce priveste primirea ajutorului anterior pentru a rezolva aceasta problema, pot sa spun ca: ${document.previousHelp}. Mai multe detaii despre problema: ${document.message} `,
+        },
       ],
       model: 'gpt-3.5-turbo',
     });
@@ -53,6 +56,8 @@ module.exports = async (req, res) => {
       gravity: gravity.trim().toLowerCase(),
       message: message,
     };
+
+    console.log(analysisResult.message);
 
     if (analysisResult.gravity === 'grav') {
       // Trimite notificare către admini
@@ -72,10 +77,20 @@ module.exports = async (req, res) => {
         });
       });
     } else if (analysisResult.gravity === 'redus') {
+      await Ticket.findByIdAndUpdate(document._id, {
+        document,
+        assignedPerson: {
+          name: 'PsyChat',
+        },
+        response: analysisResult.message,
+        dateResponded: new Date(),
+        status: 'closed',
+      });
+
       // Trimite răspuns automat utilizatorului
       await email({
         recipients: document.email,
-        htmlBody: `<p>Mulțumim pentru mesajul dvs. Am notat preocupările dvs.: ${analysisResult.message}</p>`,
+        htmlBody: `<p>${analysisResult.message}</p>`,
         subject: 'Răspuns automat la cererea dvs.',
       });
     }

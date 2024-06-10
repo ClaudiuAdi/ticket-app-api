@@ -1,12 +1,12 @@
-const { Order } = require('../../models');
+const { Order, Ticket } = require('../../models');
 
 module.exports = async (req, res) => {
   const currentYear = new Date().getFullYear();
 
   try {
-    const totalOrders = await Order.countDocuments();
-    const paidInCurrentYear = await Order.countDocuments({
-      status: 'approved',
+    const totalOrders = await Ticket.countDocuments();
+    const paidInCurrentYear = await Ticket.countDocuments({
+      status: 'closed',
       updatedAt: {
         $gte: new Date(currentYear, 0, 1),
         $lt: new Date(currentYear + 1, 0, 1),
