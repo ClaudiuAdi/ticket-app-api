@@ -30,7 +30,7 @@ module.exports = `<tr>
               margin: 0;
             "
           >
-            The server of the Universe
+            PsyChat
           </h1>
         </td>
         <td width="14px" align="center">

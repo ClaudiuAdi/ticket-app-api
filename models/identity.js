@@ -37,7 +37,7 @@ const schema = new Schema(
     },
     notifications: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     active: {
       type: Boolean,

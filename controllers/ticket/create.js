@@ -3,6 +3,7 @@ const { Ticket, Identity } = require('../../models');
 const { email } = require('../../services');
 const newTicket = require('../../templates/new-ticket');
 const OpenAI = require('openai');
+const ticketResponse = require('../../templates/ticket-response');
 
 module.exports = async (req, res) => {
   // Configurare OpenAI
@@ -90,13 +91,17 @@ module.exports = async (req, res) => {
       // Trimite răspuns automat utilizatorului
       await email({
         recipients: document.email,
-        htmlBody: `<p>${analysisResult.message}</p>`,
+        htmlBody: ticketResponse,
         subject: 'Răspuns automat la cererea dvs.',
+        variables: {
+          name: document.name,
+          response: analysisResult.message,
+        },
       });
     }
 
     return res.status(200).json({
-      message: 'Ticket was created successfully',
+      message: 'Mesajul a fost trimis cu succes.',
     });
   } catch (error) {
     console.error('Error with OpenAI API:', error);

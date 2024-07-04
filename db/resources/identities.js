@@ -3,7 +3,7 @@ const { hashSync } = require('bcryptjs');
 module.exports = async () => {
   return [
     {
-      email: 'michael@email.com',
+      email: 'claudeady4579@gmail.com',
       name: 'Michael Scott',
       role: 'admin',
       password: hashSync('supersecretpassword'),
